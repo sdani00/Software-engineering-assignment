@@ -1,0 +1,41 @@
+﻿@page "/register"
+@model ScheduleManager.Pages.Account.RegisterPageModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="RegisterModel.FirstName"></label>
+        <input asp-for="RegisterModel.FirstName" class="form-control" />
+        <span asp-validation-for="RegisterModel.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegisterModel.LastName"></label>
+        <input asp-for="RegisterModel.LastName" class="form-control" />
+        <span asp-validation-for="RegisterModel.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegisterModel.Email"></label>
+        <input asp-for="RegisterModel.Email" class="form-control" />
+        <span asp-validation-for="RegisterModel.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegisterModel.Password"></label>
+        <input asp-for="RegisterModel.Password" class="form-control" />
+        <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegisterModel.ConfirmationPassword"></label>
+        <input asp-for="RegisterModel.ConfirmationPassword" class="form-control" />
+        <span asp-validation-for="RegisterModel.ConfirmationPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
