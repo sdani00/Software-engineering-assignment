@@ -1,0 +1,81 @@
+﻿@page
+@using ScheduleManager.Status
+@model ScheduleManager.Pages.Account.LoginModel
+@{
+    ViewData["page-title"] = "Log in";
+
+    ViewData["welcome-back"] = "Welcome back!";
+    ViewData["lockedout-message"] = "The account is locked out!";
+    ViewData["rejection-message"] = "Invalid credentials!";
+    ViewData["error-message"] = "An internal error has occourred!";
+    ViewData["successful-message"] = "Your registration was successfully sent! Please verify your email to confirm your account.";
+
+    ViewData["email-placeholder"] = "Email";
+    ViewData["password-placeholder"] = "Password";
+    ViewData["login-button"] = "Login";
+
+    ViewData["create-account"] = "Create an account";
+    ViewData["create-account-url"] = "/Account/RegisterPage";
+}
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">@ViewData["welcome-back"]</h1>
+                                    @if (Model.IsLockedOut)
+                                    {
+                                        <div class="alert alert-danger" role="alert">@ViewData["lockedout-message"]</div>
+                                    }
+                                    else if (Model.RequestStatus == Status.Rejected)
+                                    {
+                                        <div class="alert alert-danger" role="alert">@ViewData["rejection-message"]</div>
+                                    }
+                                    else if (Model.RequestStatus == Status.Error)
+                                    {
+                                        <div class="alert alert-danger" role="alert">@ViewData["error-message"]</div>
+                                    }
+                                    @if (@Model.Redirected == true)
+                                    {
+                                        <div class="alert alert-success" role="alert">@ViewData["successful-message"]</div>
+                                    }
+                                </div>
+                                <form id="account" method="post" class="user">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-user"
+                                               asp-for="LoginUser.Email" aria-describedby="emailHelp"
+                                               placeholder=@ViewData["email-placeholder"]>
+                                        <span asp-validation-for="LoginUser.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user"
+                                               asp-for="LoginUser.Password" placeholder=@ViewData["password-placeholder"]>
+                                        <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        @ViewData["login-button"]
+                                    </button>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" asp-page=@ViewData["create-account-url"]>@ViewData["create-account"]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

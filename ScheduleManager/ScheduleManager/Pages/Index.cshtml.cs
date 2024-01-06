@@ -2,19 +2,18 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ScheduleManager.Pages
-{
-    public class IndexModel : PageModel
+{ public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly string _redirectUrlLogin = "/Account/Login";
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IActionResult OnGet()
         {
-            _logger = logger;
-        }
+            if (User is null)
+            {
+                return RedirectToPage(_redirectUrlLogin);
+            }
 
-        public void OnGet()
-        {
-
+            return RedirectToPage(_redirectUrlLogin);
         }
     }
 }

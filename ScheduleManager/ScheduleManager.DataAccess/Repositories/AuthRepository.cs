@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using ScheduleManager.DataAccess.Context;
 using ScheduleManager.DataAccess.Models;
+using ScheduleManager.Domain.Login;
 using ScheduleManager.Domain.Register;
 using ScheduleManager.Domain.Repositories;
 
@@ -29,8 +25,23 @@ namespace ScheduleManager.DataAccess.Repositories
             var dbUser = MapUser(user);
 
             var isUserRegistered = (await _userManager.CreateAsync(dbUser, user.Password)).Succeeded;
+            var isUserRoleAdded = (await _userManager.AddToRoleAsync(dbUser, "User")).Succeeded;
 
-            return isUserRegistered;
+            return isUserRegistered && isUserRoleAdded;
+        }
+
+        public async Task<string> Login(LoginModel user)
+        {
+            var registeredUser = await _userManager.FindByEmailAsync(user.Email);
+
+            if (registeredUser == null)
+            {
+                return null;
+            }
+
+            var loginResult = await _signInManager.PasswordSignInAsync(registeredUser, user.Password, false, false);
+
+            return loginResult.Succeeded ? (await _userManager.GetRolesAsync(registeredUser)).FirstOrDefault() : null;
         }
 
         public Task Logout()

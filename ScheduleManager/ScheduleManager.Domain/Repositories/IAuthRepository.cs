@@ -1,4 +1,5 @@
-﻿using ScheduleManager.Domain.Register;
+﻿using ScheduleManager.Domain.Login;
+using ScheduleManager.Domain.Register;
 
 namespace ScheduleManager.Domain.Repositories
 {
@@ -6,5 +7,6 @@ namespace ScheduleManager.Domain.Repositories
     {
         Task<bool> Register(RegisterModel user);
         Task Logout();
+        Task<string> Login(LoginModel user);
     }
 }
