@@ -1,6 +1,8 @@
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ScheduleManager.Application.Register;
+using ScheduleManager.DataAccess;
 using ScheduleManager.DataAccess.Context;
 using ScheduleManager.DataAccess.Models;
 using ScheduleManager.DataAccess.Repositories;
@@ -13,6 +15,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<ScheduleManagerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ScheduleManagerContextConnection") ?? throw new InvalidOperationException("Connection string not found.")));
+
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, AppClaimsPrincipalFactory>();
 
 builder.Services.AddIdentity<User, Role>(options =>
 {
@@ -29,7 +33,6 @@ builder.Services.AddMediatR(typeof(Program).Assembly);
 builder.Services.AddMediatR(typeof(RegisterHandler).Assembly);
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

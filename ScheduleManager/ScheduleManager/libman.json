@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/vendor/datatables/"
+    },
+    {
+      "library": "bootstrap@5.3.2",
+      "destination": "wwwroot/vendor/bootstrap/"
+    },
+    {
+      "library": "font-awesome@6.5.1",
+      "destination": "wwwroot/vendor/font-awesome/"
+    },
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/vendor/jquery/"
+    },
+    {
+      "library": "jquery-easing@1.4.1",
+      "destination": "wwwroot/vendor/jquery-easing/"
+    }
+  ]
+}

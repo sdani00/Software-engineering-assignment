@@ -44,9 +44,9 @@ namespace ScheduleManager.DataAccess.Repositories
             return loginResult.Succeeded ? (await _userManager.GetRolesAsync(registeredUser)).FirstOrDefault() : null;
         }
 
-        public Task Logout()
+        public async Task Logout()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
         }
 
         private User MapUser(RegisterModel user)

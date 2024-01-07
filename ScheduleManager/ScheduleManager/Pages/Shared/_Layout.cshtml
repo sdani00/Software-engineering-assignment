@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ScheduleManager.styles.css" asp-append-version="true" />
+    
+    <environment names="Development">
+        <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/fontawesome/css/all.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/datatables/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/css/sb-admin-2.css">
+    </environment>
+
 </head>
 <body>
     <header>
@@ -24,6 +32,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">Logout</a>
                         </li>
                     </ul>
                 </div>

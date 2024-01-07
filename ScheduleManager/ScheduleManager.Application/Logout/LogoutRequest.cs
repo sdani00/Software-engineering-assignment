@@ -1,6 +1,8 @@
-﻿namespace ScheduleManager.Application.Logout
+﻿using MediatR;
+
+namespace ScheduleManager.Application.Logout
 {
-    public class LogoutRequest
+    public class LogoutRequest : IRequest<bool>
     {
     }
 }
