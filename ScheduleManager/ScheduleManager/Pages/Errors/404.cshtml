@@ -1,0 +1,37 @@
+﻿@page
+@{
+    ViewData["page-title"] = "404";
+
+    ViewData["page-not-found-code"] = "404";
+    ViewData["page-not-found-title"] = "Page Not Found";
+    ViewData["page-not-found-text"] = "It looks like you found a glitch in the matrix...";
+    ViewData["page-not-found"] = "Page Not Found";
+    ViewData["page-not-found-back"] = "Back to Dashboard";
+
+    ViewData["dashboard-user-url"] = "/ViewRequestsUser";
+    ViewData["dashboard-bto-url"] = "/ViewRequestsSMA";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- 404 Error Text -->
+    <div class="text-center">
+        <div class="error mx-auto" data-text="404">@ViewData["page-not-found-code"]</div>
+        <p class="lead text-gray-800 mb-5">@ViewData["page-not-found"]</p>
+        <p class="text-gray-500 mb-0">@ViewData["page-not-found-text"]</p>
+        @if (User is not null)
+        {
+            if (User.IsInRole("SMA"))
+            {
+                <a asp-page=@ViewData["dashboard-bto-url"]>&larr; @ViewData["page-not-found-back"]</a>
+            }
+            if (User.IsInRole("User"))
+            {
+                <a asp-page=@ViewData["dashboard-user-url"]>&larr; @ViewData["page-not-found-back"]</a>
+            }
+        }
+    </div>
+
+</div>
+<!-- /.container-fluid -->

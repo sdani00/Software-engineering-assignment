@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ca7e396a-3e43-4bb4-bcd7-86b686e31c6c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,10 +21,10 @@
     <ProjectReference Include="..\ScheduleManager.DataAccess\ScheduleManager.DataAccess.csproj" />
     <ProjectReference Include="..\ScheduleManager.Domain\ScheduleManager.Domain.csproj" />
     <ProjectReference Include="..\ScheduleManager.Application\ScheduleManager.Application.csproj" />
+    <ProjectReference Include="..\ScheduleManager.Notification\ScheduleManager.Notification.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Errors\" />
     <Folder Include="wwwroot\vendor\" />
   </ItemGroup>
 

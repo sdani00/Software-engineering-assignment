@@ -40,7 +40,7 @@ namespace ScheduleManager.Pages.Account
                 return Page();
             }
 
-            var loginRequest = new LoginRequest()
+            var loginRequest = new LoginRequest
             {
                 Model = LoginUser
             };
@@ -57,18 +57,19 @@ namespace ScheduleManager.Pages.Account
             {
                 return  LocalRedirect(_redirectUrlAfterLoginForUser);
             }
-            else if (result == "SMA")
+
+            if (result == "SMA")
             {
                 return LocalRedirect(_redirectUrlAfterLoginForBto);
             }
-            else if (result == "LockedOut")
+
+            if (result == "LockedOut")
             {
                 IsLockedOut = true;
                 return Page();
             }
-            
+
             return Page();
         }   
-    
     }
 }

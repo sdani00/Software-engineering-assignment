@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleManager.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleManager.Domain", "ScheduleManager.Domain\ScheduleManager.Domain.csproj", "{97F090DE-3A9A-4DFA-905D-60755CD694AD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleManager.Notification", "ScheduleManager.Notification\ScheduleManager.Notification.csproj", "{97028E67-917F-4C80-8A3F-C63B60544444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{97F090DE-3A9A-4DFA-905D-60755CD694AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F090DE-3A9A-4DFA-905D-60755CD694AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F090DE-3A9A-4DFA-905D-60755CD694AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97028E67-917F-4C80-8A3F-C63B60544444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97028E67-917F-4C80-8A3F-C63B60544444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97028E67-917F-4C80-8A3F-C63B60544444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97028E67-917F-4C80-8A3F-C63B60544444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

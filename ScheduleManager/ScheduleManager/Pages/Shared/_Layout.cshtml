@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["page-title-default"] = "Schedule Manager";
+
+    ViewData["sidebar-title"] = "Schedule Manager";
+    ViewData["sidebar-dashboard"] = "Dashboard";
+    ViewData["sidebar-createTrip"] = "New trip";
+
+    ViewData["topbar-userName"] = User.Identity.Name;
+    ViewData["topbar-logout"] = "Logout";
+
+    ViewData["user-dashboard-url"] = "/ViewRequestsUser";
+    ViewData["bto-dashboard-url"] = "/ViewRequestsSMA";
+    ViewData["create-trip-url"] = "/CreateBusinessTrip";
+    ViewData["logout-url"] = "/Account/Logout";
+
+    ViewData["modal-logout-title"] = "Logout";
+    ViewData["modal-logout-text"] = "You are about to logout. Do you want to proceed?";
+    ViewData["modal-logout-yes"] = "Yes";
+    ViewData["modal-logout-no"] = "No";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,56 +27,175 @@
     <title>@ViewData["Title"] - ScheduleManager</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" type="text/css" href="/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ScheduleManager.styles.css" asp-append-version="true" />
-    
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
+
     <environment names="Development">
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/vendor/fontawesome/css/all.css">
-        <link rel="stylesheet" type="text/css" href="/vendor/datatables/dataTables.bootstrap4.css">
-        <link rel="stylesheet" type="text/css" href="/css/sb-admin-2.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/datatables/dataTables.bootstrap4.css" />
+        <link rel="stylesheet" type="text/css" href="/css/sb-admin-2.min.css">
     </environment>
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ScheduleManager</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">Logout</a>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            @if (User.IsInRole("User"))
+            {
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-page=@ViewData["user-dashboard-url"]>
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-suitcase-rolling"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">@ViewData["sidebar-title"]</div>
+                </a>
+            }
+            else if (User.IsInRole("SMA"))
+            {
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-page=@ViewData["sma-dashboard-url"]>
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-suitcase-rolling"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">@ViewData["sidebar-title"]</div>
+                </a>
+            }
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            @if (User.IsInRole("User"))
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" asp-page=@ViewData["user-dashboard-url"]>
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>@ViewData["sidebar-dashboard"]</span>
+                    </a>
+                </li>
+            }
+            else if (User.IsInRole("SMA"))
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" asp-page=@ViewData["sma-dashboard-url"]>
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>@ViewData["sidebar-dashboard"]</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Create new business trip -->
+            @if (User.IsInRole("User"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-page=@ViewData["create-trip-url"]>
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>@ViewData["sidebar-createTrip"]</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@ViewData["topbar-userName"]</span>
+                                <img class="img-profile rounded-circle"
+                                     src="/img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    @ViewData["topbar-logout"]
+                                </a>
+                            </div>
                         </li>
                     </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    @RenderBody()
+
                 </div>
+                <!-- /.container-fluid -->
+
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of content Wrapper -->
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - ScheduleManager - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@ViewData["modal-logout-title"]</h5>
+                </div>
+                <div class="modal-body" style="font-size:18px"><strong>@ViewData["modal-logout-text"]</strong></div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" asp-page=@ViewData["logout-url"]>@ViewData["modal-logout-yes"]</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">@ViewData["modal-logout-no"]</button>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="/js/site.js" asp-append-version="true"></script>
+
+    <partial name="_ValidationScriptsPartial" />
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

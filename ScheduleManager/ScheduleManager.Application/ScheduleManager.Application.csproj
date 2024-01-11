@@ -9,9 +9,13 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.7" />
+    <PackageReference Include="RazorEngineCore" Version="2022.8.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ScheduleManager.DataAccess\ScheduleManager.DataAccess.csproj" />
     <ProjectReference Include="..\ScheduleManager.Domain\ScheduleManager.Domain.csproj" />
   </ItemGroup>
 

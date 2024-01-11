@@ -4,7 +4,7 @@
 @{
     ViewData["page-title"] = "Log in";
 
-    ViewData["welcome-back"] = "Welcome back!";
+    ViewData["welcome-back"] = "Welcome";
     ViewData["lockedout-message"] = "The account is locked out!";
     ViewData["rejection-message"] = "Invalid credentials!";
     ViewData["error-message"] = "An internal error has occourred!";
@@ -16,6 +16,8 @@
 
     ViewData["create-account"] = "Create an account";
     ViewData["create-account-url"] = "/Account/RegisterPage";
+
+    ViewData["login-image-url"] = "/img/login-imagine.png";
 }
 
 <div class="container">
@@ -28,6 +30,7 @@
 
                     <!-- Nested Row within Card Body -->
                     <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(@ViewData["login-image-url"])"></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
@@ -51,17 +54,17 @@
                                 </div>
                                 <form id="account" method="post" class="user">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
+                                        <input type="email" class="form-control"
                                                asp-for="LoginUser.Email" aria-describedby="emailHelp"
                                                placeholder=@ViewData["email-placeholder"]>
                                         <span asp-validation-for="LoginUser.Email" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
+                                        <input type="password" class="form-control mt-2"
                                                asp-for="LoginUser.Password" placeholder=@ViewData["password-placeholder"]>
                                         <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block mt-3 d-block mx-auto">
                                         @ViewData["login-button"]
                                     </button>
                                 </form>

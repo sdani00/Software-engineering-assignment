@@ -16,6 +16,11 @@ namespace ScheduleManager.DataAccess.Models
 
         public string ClientLocation { get; set; }
 
-        public RequestStatus Status { get; set; }
+        public BusinessTripRequestStatus Status { get; set; }
+
+        public string Client { get; set; }
+
+        public bool Card { get; set; }
     }
 }
+

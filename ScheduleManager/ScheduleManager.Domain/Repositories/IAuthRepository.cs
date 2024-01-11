@@ -8,5 +8,6 @@ namespace ScheduleManager.Domain.Repositories
         Task<bool> Register(RegisterModel user);
         Task Logout();
         Task<string> Login(LoginModel user);
+        Task<bool> ConfirmEmail(string email, string token);
     }
 }

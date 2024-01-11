@@ -1,0 +1,93 @@
+﻿@page
+@model ScheduleManager.Pages.CreateBusinessTripModel
+@{
+    ViewData["page-title"] = "Create";
+    ViewData["title"] = "Create a new business trip request";
+    ViewData["client-name"] = "Client name";
+    ViewData["client-location"] = "Client location";
+    ViewData["start-date"] = "Start date";
+    ViewData["end-date"] = "End date";
+    ViewData["leaving-from"] = "Leaving from";
+    ViewData["card"] = "Company bank card";
+
+    ViewData["cancel-button"] = "Cancel";
+    ViewData["save-button"] = "Save";
+}
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">@ViewData["title"]</h1>
+</div>
+
+<!-- Content Row -->
+
+<form method="post">
+
+    <div class="row">
+
+        <!-- First column of form -->
+        <div class="col-lg-6 mb-4">
+            <div>
+                <label asp-for="BusinessTripModel.Client">@ViewData["client-name"]<span class="text-danger">*</span></label>
+                <input asp-for="BusinessTripModel.Client" class="form-control" />
+                <span asp-validation-for="BusinessTripModel.Client" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="BusinessTripModel.StartDate">@ViewData["start-date"]<span class="text-danger">*</span></label>
+                <input asp-for="BusinessTripModel.StartDate" type="date" id="StartDate" class="form-control" />
+                <span asp-validation-for="BusinessTripModel.StartDate" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="BusinessTripModel.LeavingFrom"> @ViewData["leaving-from"]<span class="text-danger">*</span></label>
+                <input asp-for="BusinessTripModel.LeavingFrom" class="form-control" />
+                <span asp-validation-for="BusinessTripModel.LeavingFrom" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Second column of form -->
+        <div class="col-lg-6 mb-4">
+
+            <div>
+                <label asp-for="BusinessTripModel.ClientLocation">@ViewData["client-location"]<span class="text-danger">*</span></label>
+                <input asp-for="BusinessTripModel.ClientLocation" class="form-control" />
+                <span asp-validation-for="BusinessTripModel.ClientLocation" class="text-danger"></span>
+            </div>
+
+
+            <div>
+                <label asp-for="BusinessTripModel.EndDate">@ViewData["end-date"]<span class="text-danger">*</span></label>
+                <input asp-for="BusinessTripModel.EndDate" type="date" class="form-control" id="EndDate" />
+                <span asp-validation-for="BusinessTripModel.EndDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-4">
+
+            <div>
+                <input asp-for="BusinessTripModel.Card" type="checkbox" id="BankCard" class="Check">
+                <label asp-for="BusinessTripModel.Card">@ViewData["card"]</label>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-6 mb-4 d-flex flex-row-reverse">
+                <a asp-page="/BusinessTripRequests" class="btn btn-secondary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-xmark"></i>
+                    </span>
+                    <span class="text">@ViewData["cancel-button"]</span>
+                </a>
+            </div>
+            <div class="col-6 mb-4 d-flex">
+                <button class="btn btn-success btn-icon-split" type="submit">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">@ViewData["save-button"]</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+

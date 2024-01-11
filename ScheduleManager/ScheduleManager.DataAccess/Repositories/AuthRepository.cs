@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Web;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ScheduleManager.DataAccess.Context;
 using ScheduleManager.DataAccess.Models;
 using ScheduleManager.Domain.Login;
@@ -42,6 +44,22 @@ namespace ScheduleManager.DataAccess.Repositories
             var loginResult = await _signInManager.PasswordSignInAsync(registeredUser, user.Password, false, false);
 
             return loginResult.Succeeded ? (await _userManager.GetRolesAsync(registeredUser)).FirstOrDefault() : null;
+        }
+
+        public async Task<bool> ConfirmEmail(string email, string token)
+        {
+            email = HttpUtility.UrlDecode(email);
+            token = HttpUtility.UrlDecode(token);
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user != null && token != null && !user.EmailConfirmed)
+            {
+                IdentityResult result = await _userManager.ConfirmEmailAsync(user, token);
+                return result == IdentityResult.Success ? true : false;
+            }
+
+            return false;
         }
 
         public async Task Logout()

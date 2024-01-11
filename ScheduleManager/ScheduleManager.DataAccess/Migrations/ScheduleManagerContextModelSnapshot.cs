@@ -175,6 +175,13 @@ namespace ScheduleManager.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Card")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Client")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ClientLocation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -15,7 +15,7 @@ namespace ScheduleManager.Domain.Register
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email address is required.")]
-        [RegularExpression("^[a-zA-Z]+\\.[a-zA-Z]+@gmail.com$", ErrorMessage = "Incorrect email (required format: <firstName>.<lastName>@gmail.com).")]
+        [RegularExpression("^[a-zA-Z]+[a-zA-Z0-9]*@gmail\\.com$", ErrorMessage = "Incorrect email (required format: <firstName>.<lastName>@gmail.com).")]
         [MaxLength(80, ErrorMessage = "Maximum length of this field is 80 characters.")]
         public string Email { get; set; }
 
