@@ -68,6 +68,7 @@ Thumbs.db
 packages
 NuGet.exe
 _[Ss]cripts
+*.vs
 *.exe
 *.dll
 *.nupkg
